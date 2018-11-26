@@ -80,8 +80,8 @@ public class CommandBasedList<O extends BaseItem, R extends BaseItem<O>> {
     public List<R> query(final @NotNull String query, final int start, final int maxResults) throws CommandExecutionException, IOException, CommandNotAvailableException {
         if (queryCommand == null) throw new CommandNotAvailableException(this, "queryCommand");
         queryCommand.setParameter("filter", query);
-        queryCommand.setParameter("max", String.valueOf(maxResults));
         queryCommand.setParameter("after", String.valueOf(start));
+        queryCommand.setParameter("max", String.valueOf(maxResults));
         final CommandResult<List<R>> result = owner.getYouTrack().execute(queryCommand);
         return result.success() ? result.getResult() : Collections.<R>emptyList();
     }

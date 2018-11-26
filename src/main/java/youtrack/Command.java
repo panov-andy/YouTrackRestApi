@@ -15,10 +15,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,7 +26,7 @@ public abstract class Command<O extends BaseItem, R> {
     protected final O owner;
     protected final YouTrack youTrack;
     CloseableHttpResponse response;
-    Map<String, String> parameters = new HashMap<String, String>();
+    Map<String, String> parameters = new LinkedHashMap<String, String>();
     private static final Pattern typeNamePattern = Pattern.compile("xsi:type=\"([a-zA-Z]+?)\"");
 
     private static final List<String> allowedTypeNames = Arrays.asList("attachmentField",
